@@ -3,12 +3,15 @@ package com.customers.customers.Entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "customers")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +20,8 @@ public class User {
     private String lastname;
     private String email;
     private String address;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
 }
     
