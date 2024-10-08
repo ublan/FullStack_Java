@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.customers.customers.Entities.User;
 import com.customers.customers.Service.AuthService;
+import com.customers.customers.Utils.JwtUtil;
 import com.customers.customers.dto.RequestLogin;
 
 
@@ -17,8 +18,9 @@ public class AuthController {
     private AuthService authService;
     
     @PostMapping("/auth/login")
-    public User login(@RequestBody RequestLogin request) {
+    public String login(@RequestBody RequestLogin request) {
         User user = authService.login(request.getEmail(), request.getPassword()); 
-        return user;  
+        String token = JwtUtil.generateToken(user);
+        return token;  
     }
 }
