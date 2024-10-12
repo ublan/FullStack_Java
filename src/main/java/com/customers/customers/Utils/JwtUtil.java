@@ -31,7 +31,7 @@ public class JwtUtil {
     
     }
 
-    public String validateToken(String token) {
+    public static String validateToken(String token) {
     
         JWTVerifier verifier = JWT.require(algorithm)
         .withIssuer("auth0")
