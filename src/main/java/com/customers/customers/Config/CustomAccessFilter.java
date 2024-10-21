@@ -40,6 +40,7 @@ public class CustomAccessFilter implements Filter {
         String[] availableUrl = new String[] {
                 "/api/auth/login",
                 "/api/auth/register"
+                
         };
 
         boolean authorized = Arrays.asList(availableUrl).contains(currentUrl);
