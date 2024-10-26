@@ -51,7 +51,7 @@ public class CustomAccessFilter implements Filter {
 
         try {
             String token = request.getHeader("Authorization");
-            String userId = JwtUtil.validateToken(token);
+            String userId = JwtUtil.getUserIdByToken(token);
             return true;
         } catch(Exception e) {
             return false;

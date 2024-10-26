@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImp implements UserService {
 
-    public static final String SECRET_KEY = "asdqweqgh345v";
+    public static final String SECRET_KEY = "3lB4ut4!";
 
     @Autowired
     private UserRepository repository;

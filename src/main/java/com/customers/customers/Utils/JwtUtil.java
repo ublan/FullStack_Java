@@ -10,35 +10,31 @@ import com.customers.customers.Entities.User;
 
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "asdqweqgh345v";
-
+    private static final String SECRET_KEY = "3lB4ut4!";
     private static final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
-
     public static String generateToken(User user) {
-        
-        String token = JWT.create().withIssuer("auth0").
-        withClaim("userId", user.getId()).
-        withIssuedAt(new Date()).
-        withExpiresAt(getExpirationDate()).
-        sign(algorithm);
-
+        String token = JWT.create()
+                .withIssuer("ATLAcademy")
+                .withClaim("userId", user.getId())
+                .withIssuedAt(new Date())
+                .withExpiresAt(getExpiresDate())
+                .sign(algorithm);
         return token;
     }
-     
-    private static Date getExpirationDate() {
-        return new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 7); // 7 dias de expiracion
-    
-    }
 
-    public static String validateToken(String token) {
-    
+    public static String getUserIdByToken(String token) {
         JWTVerifier verifier = JWT.require(algorithm)
-        .withIssuer("auth0")
-        .build();
+                .withIssuer("ATLAcademy")
+                .build();
 
         DecodedJWT decoded = verifier.verify(token);
-        String userId = decoded.getClaim("userId").asString();
+        String userId = decoded.getClaim("userId").toString();
         return userId;
+    }
+
+    private static Date getExpiresDate() {
+        return new Date(System.currentTimeMillis()
+                + (1000L * 60 * 60 * 24 * 14)); // 14 days
     }
 }
